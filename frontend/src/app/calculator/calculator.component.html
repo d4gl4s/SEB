@@ -1,0 +1,24 @@
+<div class="currency-calculator">
+  <h2>Currency Calculator</h2>
+  <button routerLink="/">Home</button>
+
+  <label>Amount:</label>
+  <input type="number" [(ngModel)]="amount" (input)="convertCurrency()" />
+
+  <label>Select Currency:</label>
+  <div class="custom-dropdown">
+    <input type="text" [(ngModel)]="searchQuery" (input)="filterCurrencies()" placeholder="Search currency..." (focus)="showDropdown = true"/>
+    <div class="dropdown-list" *ngIf="showDropdown">
+      <div *ngFor="let rate of filteredCurrencies()" (click)="selectCurrency(rate)" class="dropdown-item">
+        {{ rate.flag }} {{ rate.currencyName }} ({{ rate.currencyCode }})
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="convertedAmount !== null">
+    <p>Converted Amount: {{ convertedAmount | number: '1.2-2' }}</p>
+    <p>Exchange Rate: {{ conversionRate }}</p>
+  </div>
+
+  <p *ngIf="error">{{ error }}</p>
+</div>

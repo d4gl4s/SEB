@@ -1,0 +1,16 @@
+
+<div>{{exchangeRateHistory?.flag }} {{exchangeRateHistory?.currencyName}}</div>
+<div>Today: {{exchangeRateHistory!.entries[exchangeRateHistory?.entries!.length-1]!.rate}}</div>
+<div style="text-align: center; margin-bottom: 10px;">
+  <button (click)="updateChartData(90)">Past 3 Months</button>
+  <button (click)="updateChartData(30)">Past Month</button>
+  <button (click)="updateChartData(7)">Past Week</button>
+</div>
+<div style="display: block;">
+  <canvas baseChart width="800" height="300"
+          [type]="'line'"
+          [data]="lineChartData"
+          [options]="lineChartOptions"
+          [legend]="lineChartLegend">
+  </canvas>
+</div>
