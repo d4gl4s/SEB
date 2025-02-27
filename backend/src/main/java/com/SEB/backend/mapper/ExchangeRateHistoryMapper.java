@@ -30,7 +30,7 @@ public class ExchangeRateHistoryMapper {
 
         // Build the DTO with currency information and sorted entries
         return ExchangeRateHistoryDTO.builder()
-                .currencyCode(currency.name())  // Assuming Currency is an enum
+                .currencyCode(currency.name())
                 .currencyName(currency.getCurrencyName())
                 .flag(currency.getFlag())
                 .symbol(currency.getSymbol())

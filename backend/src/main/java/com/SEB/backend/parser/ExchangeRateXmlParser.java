@@ -23,8 +23,6 @@ public class ExchangeRateXmlParser {
         List<ExchangeRate> exchangeRates = new ArrayList<>();
         try {
             ExchangeRateEnvelope envelope = xmlMapper.readValue(xml, ExchangeRateEnvelope.class);
-
-            // Get the first date cube (assuming we're dealing with a single day's data)
             List<ExchangeRateEnvelope.Cube.DateCube> dateCubes = envelope.getCube().getDateCubes();
 
             for (ExchangeRateEnvelope.Cube.DateCube dateCube : dateCubes) {

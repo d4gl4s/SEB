@@ -42,12 +42,4 @@ public enum Currency {
     private final String currencyName;
     private final String flag;
     private final String symbol;
-
-    public static Currency fromCode(String code) {
-        try {
-            return Currency.valueOf(code.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Unsupported currency code: " + code);
-        }
-    }
 }
