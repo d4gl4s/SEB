@@ -1,5 +1,11 @@
-.container {
-  padding: 20px;
+#menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+
+  div {
+    color: #857E94;
+  }
 }
 
 .rates-table {

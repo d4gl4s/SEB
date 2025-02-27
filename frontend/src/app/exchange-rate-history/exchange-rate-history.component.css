@@ -1,0 +1,25 @@
+#chartButtons {
+  display: flex;
+  justify-content: end;
+
+  button {
+    margin-left: 6px;
+  }
+}
+
+#rateTodayComponent {
+  padding: 16px 7em 16px 16px;
+  width: fit-content;
+  border: 1px solid #E8E7EC;
+  border-radius: 8px;
+
+  label {
+    color: #857E94;
+  }
+
+  div {
+    font-size: 1.5em;
+    font-weight: 500;
+    margin-top: 0.3em;
+  }
+}

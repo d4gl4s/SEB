@@ -1,7 +1,10 @@
 
-<div>{{exchangeRateHistory?.flag }} {{exchangeRateHistory?.currencyName}}</div>
-<div>Today: {{exchangeRateHistory!.entries[exchangeRateHistory?.entries!.length-1]!.rate}}</div>
-<div style="text-align: center; margin-bottom: 10px;">
+<h1>{{exchangeRateHistory?.flag }} {{exchangeRateHistory?.currencyName}}</h1>
+<div id="rateTodayComponent">
+  <label>Today: </label>
+  <div>{{exchangeRateHistory?.symbol}}{{exchangeRateHistory!.entries[exchangeRateHistory?.entries!.length-1]!.rate}}</div>
+</div>
+<div id="chartButtons" style="text-align: center; margin-bottom: 10px;">
   <button (click)="updateChartData(90)">Past 3 Months</button>
   <button (click)="updateChartData(30)">Past Month</button>
   <button (click)="updateChartData(7)">Past Week</button>

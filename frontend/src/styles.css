@@ -1,1 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
+main {
+  font-family: Arial;
+}
+
+h2 {
+  margin-bottom: 2em;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #316BFF;
+  color: whitesmoke;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #3167EF;
+}
+
+.backLink {
+  color: #316BFF;
+  cursor: pointer;
+  width: fit-content;
+  padding: 0.5em 0.6em;
+  border-radius: 4px;
+}
+
+.backLink:hover {
+  background-color: #FAFAFA;
+  color: #3167EF;
+}
+/* For Chrome, Safari, Edge, and Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ExchangeRateService } from '../service/exchange-rate.service';
 import { ExchangeRate } from '../model/exchange-rate.model';
-import {RouterLink} from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'calculator',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: 'calculator.component.html',
-  styleUrls: ['calculator.component.css']
+  styleUrl: 'calculator.components.css'
 })
 export class CalculatorComponent implements OnInit {
   exchangeRates: ExchangeRate[] = [];
@@ -22,9 +22,9 @@ export class CalculatorComponent implements OnInit {
   convertedAmount: number | null = null;
   conversionRate: number | null = null;
   searchQuery: string = '';
-  showDropdown = false;
+  showDropdown: boolean = false;
 
-  private exchangeRateService = inject(ExchangeRateService);
+  private exchangeRateService: ExchangeRateService = inject(ExchangeRateService);
 
   ngOnInit(): void {
     this.fetchExchangeRates();
@@ -38,6 +38,9 @@ export class CalculatorComponent implements OnInit {
         next: (data: ExchangeRate[]) => {
           this.exchangeRates = data;
           this.loading = false;
+          if (this.exchangeRates.length > 0) {
+            this.selectCurrency(this.exchangeRates[0]);
+          }
         },
         error: (error) => {
           this.error = 'Failed to fetch exchange rates. Please try again later.';
@@ -59,17 +62,7 @@ export class CalculatorComponent implements OnInit {
   }
 
   filteredCurrencies(): ExchangeRate[] {
-    return this.exchangeRates.filter(rate =>
-      rate.currencyName.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-      rate.currencyCode.toLowerCase().includes(this.searchQuery.toLowerCase())
-    );
-  }
-
-  filterCurrencies(): void {
-    this.exchangeRates = this.exchangeRates.filter(rate =>
-      rate.currencyName.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-      rate.currencyCode.toLowerCase().includes(this.searchQuery.toLowerCase())
-    );
+    return this.exchangeRates;
   }
 
   selectCurrency(rate: ExchangeRate): void {
@@ -79,4 +72,3 @@ export class CalculatorComponent implements OnInit {
     this.convertCurrency();
   }
 }
-

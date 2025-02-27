@@ -27,7 +27,7 @@ export class ExchangeRateHistoryComponent implements OnInit {
     ]
   };
   public lineChartOptions: ChartOptions<'line'> = {responsive: true};
-  public lineChartLegend = false;
+  public lineChartLegend: boolean = false;
 
   private readonly exchangeRateService = inject(ExchangeRateService);
   private readonly route = inject(ActivatedRoute);
@@ -60,17 +60,13 @@ export class ExchangeRateHistoryComponent implements OnInit {
 
   updateChartData(days: number): void {
     if (!this.exchangeRateHistory) return;
-
     const cutoffDate = new Date();
     cutoffDate.setDate(cutoffDate.getDate() - days);
-
     const filteredEntries = this.exchangeRateHistory.entries.filter(entry =>
       new Date(entry.date) >= cutoffDate
     );
-
-    const labels = filteredEntries.map(entry => entry.date);
-    const rates = filteredEntries.map(entry => entry.rate);
-
+    const labels: string[] = filteredEntries.map(entry => entry.date);
+    const rates:number[] = filteredEntries.map(entry => entry.rate);
     this.lineChartData = {
       labels,
       datasets: [

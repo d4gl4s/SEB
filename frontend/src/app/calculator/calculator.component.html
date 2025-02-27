@@ -1,24 +1,47 @@
-<div class="currency-calculator">
-  <h2>Currency Calculator</h2>
-  <button routerLink="/">Home</button>
+<div class="backLink" routerLink="/">
+  < Back
+</div>
 
-  <label>Amount:</label>
-  <input type="number" [(ngModel)]="amount" (input)="convertCurrency()" />
+<h2>Currency Calculator</h2>
 
-  <label>Select Currency:</label>
-  <div class="custom-dropdown">
-    <input type="text" [(ngModel)]="searchQuery" (input)="filterCurrencies()" placeholder="Search currency..." (focus)="showDropdown = true"/>
-    <div class="dropdown-list" *ngIf="showDropdown">
-      <div *ngFor="let rate of filteredCurrencies()" (click)="selectCurrency(rate)" class="dropdown-item">
-        {{ rate.flag }} {{ rate.currencyName }} ({{ rate.currencyCode }})
+<div id="calculatorInputContainer">
+  <div>
+    <label for="inputAmount">Amount</label>
+    <input id="inputAmount" type="number" [(ngModel)]="amount" (input)="convertCurrency()" min="0">
+  </div>
+
+  <div>
+    <label>Select Currency:</label>
+    <div class="custom-dropdown">
+      <div
+        class="dropdown-toggle"
+        (click)="showDropdown = !showDropdown">
+        @if(selectedCurrency){
+          <span>{{ searchQuery }}</span>
+        } @else {
+          <span>Select currency</span>
+
+        }
+        <i class="dropdown-arrow" [ngClass]="{'dropdown-arrow-up': showDropdown, 'dropdown-arrow-down': !showDropdown}"></i>
       </div>
+
+      @if(showDropdown) {
+        <ul class="dropdown-menu">
+          <li *ngFor="let rate of filteredCurrencies()" (click)="selectCurrency(rate)">
+            {{ rate.flag }} {{ rate.currencyName }} ({{ rate.currencyCode }})
+          </li>
+        </ul>
+      }
     </div>
   </div>
+</div>
 
-  <div *ngIf="convertedAmount !== null">
-    <p>Converted Amount: {{ convertedAmount | number: '1.2-2' }}</p>
-    <p>Exchange Rate: {{ conversionRate }}</p>
+@if(convertedAmount){
+  <div id="convertedAmount">
+    <span>{{amount}} Eur =</span> {{ convertedAmount | number: '1.2-2' }} {{selectedCurrency}}
   </div>
+}
 
-  <p *ngIf="error">{{ error }}</p>
+<div *ngIf="error">
+  {{ error }}
 </div>
