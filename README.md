@@ -18,6 +18,7 @@ Author: **Daglas Aitsen**
 * Writing unit tests
 * Better error handling with meaningful error responses
 * Refactoring different UI elements to stand-alone Angular components
+* Responsive UI design
 * Using newer Angular features such as Signals
 * Caching query results for more efficient data retrieval
 
